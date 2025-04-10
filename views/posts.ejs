@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posts</title>
+</head>
+<body>
+  <h1>Lista de Posts</h1>
+  <ul>
+    <% posts.forEach(function(post) { %>
+      <li>
+         <strong><%= post.title %></strong><br>
+         <%= post.content %><br>
+         <% if (user.role === 'Admin') { %>
+             <!-- Formularios para actualizar y eliminar (usando method-override) -->
+             <form style="display:inline" action="/posts/<%= post.id %>?_method=PUT" method="POST">
+                <input type="text" name="title" placeholder="Nuevo título" required>
+                <input type="text" name="content" placeholder="Nuevo contenido" required>
+                <button type="submit">Actualizar</button>
+             </form>
+             <form style="display:inline" action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                <button type="submit">Eliminar</button>
+             </form>
+         <% } %>
+      </li>
+    <% }); %>
+  </ul>
+  <% if (user.role === 'Admin') { %>
+    <h2>Crear Nuevo Post</h2>
+    <form action="/posts" method="POST">
+      <label>Título:</label>
+      <input type="text" name="title" required><br>
+      <label>Contenido:</label>
+      <textarea name="content" required></textarea><br>
+      <button type="submit">Crear Post</button>
+    </form>
+  <% } else { %>
+      <p>Como Editor, solo puedes visualizar los posts.</p>
+  <% } %>
+  <a href="/dashboard">Volver al Dashboard</a>
+</body>
+</html>
