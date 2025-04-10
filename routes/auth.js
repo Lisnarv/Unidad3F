@@ -12,6 +12,11 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', authController.login);
 
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');  
+    res.render('logout', { message: 'Has cerrado la sesión correctamente.' });
+  });
+
 // Ruta protegida: dashboard
 router.get('/dashboard', authController.verifyToken, authController.dashboard);
 

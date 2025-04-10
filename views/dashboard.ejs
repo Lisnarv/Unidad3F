@@ -2,11 +2,59 @@
 <html>
 <head>
   <title>Dashboard</title>
+  <!-- CDN de Bootstrap 5 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
 </head>
 <body>
-  <h1>Bienvenido, usuario con rol <%= user.role %></h1>
-  <p>ID: <%= user.id %></p>
-  <p>Rol: <%= user.role %></p>
-  <a href="/posts">Ver Posts</a>
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Mi App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/posts">Posts</a>
+          </li>
+          <!-- Puedes agregar más enlaces según sea necesario -->
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal del Dashboard -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <!-- Tarjeta con información del usuario -->
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            Panel de Control
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Bienvenido, usuario con rol <%= user.role %></h5>
+            <p class="card-text">
+              <strong>ID:</strong> <%= user.id %><br>
+              <strong>Rol:</strong> <%= user.role %>
+            </p>
+            <a href="/posts" class="btn btn-primary">Ver Posts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts de Bootstrap (opcional para componentes interactivos) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
